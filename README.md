@@ -9,13 +9,12 @@ To execute:
 
 Command Line Arguments:
 
-```
-    Enter the contest you want: If contest is "Weekly Contest 281", give "weekly-contest-281" (It is not case sensitive, but hyphen is compulsory)
+
+    1. Enter the contest you want: If contest is "Weekly Contest 281", give "weekly-contest-281" (It is not case sensitive, but hyphen is compulsory)
     
-    Enter the file of users you want ranklist from (Ensure it is in CSV format). The users must be listed on the first row of the file for reading.
+    2. Enter the file of users you want ranklist from (Ensure it is in CSV format). The users must be listed on the first row of the file for reading.
     A preview is attached
 
-```
 
 #### This is very useful if you want to obtain the ranklist of multiple users (40-50) whose username is aldready on a Google Spreadsheet or CSV file.
 
