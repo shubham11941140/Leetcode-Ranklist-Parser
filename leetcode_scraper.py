@@ -104,7 +104,7 @@ def main():
     with open(csv_file, 'r') as fp:
         reader = csv.reader(fp)
         users = [ row[0] for row in reader ]
-    print("USERS ARE", users)
+    print("USERNAME OF THE USERS ARE", users)
 
     #getContestInfo(args.contest)
     # Open a json file and write its contents to a CSV
@@ -116,11 +116,11 @@ def main():
         writer.writerow(arr)
         final = []
         for contest in contests:
-            print("CONTEST VALUE IS", contest['username'])
+            #print("CONTEST VALUE IS", contest['username'])
             if contest['username'] in users:
                 final.append(contest)
                 #writer.writerow([contest[i] for i in arr])
-        print("FINAL VALUE IS", final)
+        #print("FINAL VALUE IS", final)
         # Sort final by rank
         final.sort(key=lambda c : c['rank'])
         for contest in final:
