@@ -35,7 +35,6 @@ def getRanking(contest):
             page += 1
             retry_cnt = 0
 
-
         except:
 
             print(f'Failed to retrieved data of page {page}...retry...{retry_cnt}')
