@@ -35,8 +35,6 @@ def getRanking(contest):
             page += 1
             retry_cnt = 0
 
-            if page ==3:
-                break
 
         except:
 
