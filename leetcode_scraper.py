@@ -1,6 +1,7 @@
 
 #!/usr/bin/env python3
 
+import os.path
 from time import time
 
 st = time()
@@ -10,7 +11,6 @@ from datetime import datetime as dt
 from json import load, dump
 from requests import get
 from csv import reader, writer
-import os.path
 
 def getRanking(contest):
 
@@ -87,7 +87,7 @@ def main():
         writ = writer(fp)
         arr = ['username', 'username_color', 'user_badge', 'country_name', 'rank', 'score', 'data_region', 'finish_time']
         writ.writerow(arr)
-        
+
         # If filter users not found, write all users to csv
         final = contests
         if users:
@@ -99,8 +99,8 @@ def main():
         for contest in final:
             try:
                 writ.writerow([contest.get(i, '') for i in arr])
-            except Exception as e:
-                print(e)
+            except Exception as exc:
+                print(exc)
         print("COMPLETED WRITING TO CSV")
 
 if __name__ == "__main__":
