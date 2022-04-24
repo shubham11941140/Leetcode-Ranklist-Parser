@@ -1,6 +1,7 @@
 
 #!/usr/bin/env python3
 
+import os.path
 from time import time
 
 st = time()
@@ -69,8 +70,10 @@ def main():
     print(csv_file)
 
     # Read data from CSV file username column and store it into an array
-    with open(csv_file, 'r') as fp:
-        users = [row[0] for row in reader(fp)]
+    users = []
+    if os.path.exists(csv_file):
+        with open(csv_file, 'r') as fp:
+            users = [row[0] for row in reader(fp)]
 
     print("USERNAME OF THE USERS ARE", users)
 
@@ -78,20 +81,27 @@ def main():
     with open('{}.json'.format(contest_val), 'r') as fp:
         contests = load(fp)
 
-    with open('{}.csv'.format(contest_val), 'w') as fp:
+    # Fix cp950 chinese write row issue
+    with open('{}.csv'.format(contest_val), 'w', encoding='UTF-8') as fp:
 
         writ = writer(fp)
         arr = ['username', 'username_color', 'user_badge', 'country_name', 'rank', 'score', 'data_region', 'finish_time']
         writ.writerow(arr)
-        final = [contest for contest in contests if contest['username'] in users]
+
+        # If filter users not found, write all users to csv
+        final = contests
+        if users:
+            final = [contest for contest in contests if contest['username'] in users]
 
         # Sort final by rank
         final.sort(key = lambda c : c['rank'])
 
         for contest in final:
-            writ.writerow([contest[i] for i in arr])
-
-    print("COMPLETED WRITING TO CSV")
+            try:
+                writ.writerow([contest.get(i, '') for i in arr])
+            except Exception as exc:
+                print(exc)
+        print("COMPLETED WRITING TO CSV")
 
 if __name__ == "__main__":
     main()
