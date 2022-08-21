@@ -27,7 +27,7 @@ def getRanking(contest):
             resp = get(url).json()
             page_rank = resp['total_rank']
 
-            if not len(page_rank):
+            if not page_rank:
                 break
 
             total_rank.extend(resp['total_rank'])
